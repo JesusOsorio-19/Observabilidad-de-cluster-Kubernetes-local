@@ -1,0 +1,142 @@
+From 4446fa031c40c4977a93ed6f94b3472744c306fd Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:57:11 -0500
+Subject: [PATCH 1/4] =?UTF-8?q?feat(bandit):=20A=C3=B1ade=20archivo=20para?=
+ =?UTF-8?q?=20detectar=20vulnerabilidades=20de=20seguridad=20en=20c=C3=B3d?=
+ =?UTF-8?q?igo=20python?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .bandit | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 .bandit
+
+diff --git a/.bandit b/.bandit
+new file mode 100644
+index 0000000..450852e
+--- /dev/null
++++ b/.bandit
+@@ -0,0 +1,6 @@
++[bandit]
++exclude = .git,.pytest_cache,.venv,venv,.terraform,tests
++skips = B101,B311
++severity-level = MEDIUM
++confidence-level = MEDIUM
++recursive = True
+-- 
+2.45.1.windows.1
+
+
+From 87750c58cf7f119ad0d0fb8c89b584d5b7d62f58 Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:57:48 -0500
+Subject: [PATCH 2/4] =?UTF-8?q?feat(flake):=20A=C3=B1ade=20archivo=20para?=
+ =?UTF-8?q?=20an=C3=A1lisis=20de=20calidad=20de=20c=C3=B3digo=20python?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .flake8 | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 .flake8
+
+diff --git a/.flake8 b/.flake8
+new file mode 100644
+index 0000000..d6b6fde
+--- /dev/null
++++ b/.flake8
+@@ -0,0 +1,16 @@
++[flake8]
++max-line-length = 120
++exclude = 
++    .git,
++    __pycache__,
++    build,
++    dist,
++    .venv,
++    venv,
++    .terraform
++
++ignore = 
++    E203,
++    W503,
++    E501,
++    F401 
+-- 
+2.45.1.windows.1
+
+
+From 7ed820f9a91d8b5ed0f9c4035528e08c40ebfcbf Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 23:00:03 -0500
+Subject: [PATCH 3/4] =?UTF-8?q?feat(ignore):=20A=C3=B1ade=20documentaci?=
+ =?UTF-8?q?=C3=B3n=20con=20archivos=20a=20ignorar=20al=20hacer=20push=20a?=
+ =?UTF-8?q?=20nuestro=20repositorio=20remoto?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .gitignore | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..ceb5ae8
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,14 @@
++__pycache__/
++
++htmlcov/
++.coverage
++.coverage.*
++coverage.xml
++.pytest_cache/
++
++.env
++.venv
++env/
++venv/
++
++
+-- 
+2.45.1.windows.1
+
+
+From 611734cc46b19625421e6d5798ca3b00696022e6 Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 23:00:39 -0500
+Subject: [PATCH 4/4] =?UTF-8?q?feat(dependencias):=20A=C3=B1ade=20archivo?=
+ =?UTF-8?q?=20con=20dependencias=20necesarias?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ requirements.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 requirements.txt
+
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..c4c6180
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,8 @@
++black
++flake8
++bandit
++pytest
++pytest-cov
++pytest-mock
++pytest-html
++kubernetes
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

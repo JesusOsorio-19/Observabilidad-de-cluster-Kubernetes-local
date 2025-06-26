@@ -1,0 +1,173 @@
+From 2d273ce022c24c9c4382150404e5256583b1860a Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:46:00 -0500
+Subject: [PATCH 1/4] =?UTF-8?q?feat(hook):=20A=C3=B1ade=20hook=20commit-ms?=
+ =?UTF-8?q?g=20para=20validaci=C3=B3n=20de=20archivos=20python=20siguiendo?=
+ =?UTF-8?q?=20convenciones?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ hooks/commit-msg | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 hooks/commit-msg
+
+diff --git a/hooks/commit-msg b/hooks/commit-msg
+new file mode 100644
+index 0000000..f1d462f
+--- /dev/null
++++ b/hooks/commit-msg
+@@ -0,0 +1,14 @@
++#!/bin/sh
++
++commit_msg_file=$1
++commit_msg=$(cat "$commit_msg_file")
++
++validation="^(feat|fix|docs|test)(\([a-z0-9\-]+\))?: .{1,}"      
++
++if echo "$commit_msg" | grep -qE "$validation"; then
++  exit 0
++else
++  echo "El mensaje de commit no sigue la Convención de Commits." 
++  echo "Ejemplo de mensaje: 'feat(tf-module):', 'fix(hooks)', 'docs(readme)' o 'test(py)'"
++  exit 1
++fi
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+
+
+From 5a8d9bdf3a14155477aa81f451f847119f9adf67 Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:47:14 -0500
+Subject: [PATCH 2/4] =?UTF-8?q?feat(hook):=20A=C3=B1ade=20pre-commit=20par?=
+ =?UTF-8?q?a=20validaci=C3=B3n=20de=20archivos=20python?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ hooks/pre-commit | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 hooks/pre-commit
+
+diff --git a/hooks/pre-commit b/hooks/pre-commit
+new file mode 100644
+index 0000000..e373afd
+--- /dev/null
++++ b/hooks/pre-commit
+@@ -0,0 +1,17 @@
++#!/bin/sh
++
++PY_FILES=$(git diff --cached --name-only | grep '\.py$')
++
++echo "$PY_FILES"
++
++if [ -z "$PY_FILES" ]; then
++    echo "Sin archivos python para formateo o linting."
++    exit 0
++fi
++
++for file in $PY_FILES; do
++    black "$file"
++    flake8 "$file" || exit 1    # al ultimo para ver si hay errores que no son solucionados por black
++done
++
++exit 0
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+
+
+From 7f3bf76f7b496773800912403739a566a6ab7056 Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:49:31 -0500
+Subject: [PATCH 3/4] =?UTF-8?q?feat(hook):=20A=C3=B1ade=20pre-push=20que?=
+ =?UTF-8?q?=20impide=20el=20push=20desde=20la=20rama=20main,=20ejecuta=20l?=
+ =?UTF-8?q?os=20test=20y=20valida=20que=20no=20haya=20cambios=20pendientes?=
+ =?UTF-8?q?=20entre=20commits?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ hooks/pre-push | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+ create mode 100644 hooks/pre-push
+
+diff --git a/hooks/pre-push b/hooks/pre-push
+new file mode 100644
+index 0000000..54037e6
+--- /dev/null
++++ b/hooks/pre-push
+@@ -0,0 +1,29 @@
++#!/bin/sh
++
++echo "Ejecutando validaciones pre-push..."
++
++current_branch=$(git symbolic-ref --short HEAD)
++echo "Rama actual: $current_branch"
++
++if [ "$current_branch" = "main" ]; then
++    echo "Push directo a rama principal no permitido."
++    echo "Protección local, complementa reglas de GitHub."
++    exit 1
++fi
++
++if [ -d "tests" ] && [ -n "$(find tests -name '*.py' -print -quit)" ]; then
++    echo "Ejecutando tests"
++    python -m pytest tests/ -v
++    if [ $? -ne 0 ]; then
++        echo "Tests fallaron. Fix antes de push."
++        exit 1
++    fi
++    echo "Tests pasaron."
++fi
++
++if git diff --quiet HEAD~1 HEAD 2>/dev/null; then
++    echo "No hay cambios para pushear."
++fi
++
++echo "Validaciones pre-push completadas. Push puede continuar."
++exit 0
+-- 
+2.45.1.windows.1
+
+
+From 1bc1273ff757a5537c78631e974d19454ec8b9dc Mon Sep 17 00:00:00 2001
+From: Diego <jesustello192002@gmail.com>
+Date: Wed, 25 Jun 2025 22:51:56 -0500
+Subject: [PATCH 4/4] =?UTF-8?q?feat(hook):=20A=C3=B1ade=20install=20que=20?=
+ =?UTF-8?q?facilita=20la=20instalaci=C3=B3n=20de=20los=20hooks?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ install_hooks.sh | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 install_hooks.sh
+
+diff --git a/install_hooks.sh b/install_hooks.sh
+new file mode 100644
+index 0000000..2c56f3d
+--- /dev/null
++++ b/install_hooks.sh
+@@ -0,0 +1,13 @@
++echo "Instalando hooks"
++
++cp hooks/commit-msg .git/hooks/
++cp hooks/pre-commit .git/hooks/
++cp hooks/pre-push .git/hooks/
++
++chmod +x .git/hooks/commit-msg
++chmod +x .git/hooks/pre-commit
++chmod +x .git/hooks/pre-push
++
++echo "Hooks instalados correctamente"
++echo ""
++
+-- 
+2.45.1.windows.1
+
