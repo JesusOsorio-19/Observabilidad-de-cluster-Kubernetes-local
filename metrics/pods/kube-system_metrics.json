@@ -1,0 +1,52 @@
+[
+  {
+    "NAME": "coredns-668d6bf9bc-mksdh",
+    "CPU(cores)": "4m",
+    "MEMORY(bytes)": "37Mi"
+  },
+  {
+    "NAME": "coredns-668d6bf9bc-nb5vs",
+    "CPU(cores)": "4m",
+    "MEMORY(bytes)": "45Mi"
+  },
+  {
+    "NAME": "etcd-docker-desktop",
+    "CPU(cores)": "47m",
+    "MEMORY(bytes)": "210Mi"
+  },
+  {
+    "NAME": "kube-apiserver-docker-desktop",
+    "CPU(cores)": "72m",
+    "MEMORY(bytes)": "282Mi"
+  },
+  {
+    "NAME": "kube-controller-manager-docker-desktop",
+    "CPU(cores)": "36m",
+    "MEMORY(bytes)": "134Mi"
+  },
+  {
+    "NAME": "kube-proxy-72t48",
+    "CPU(cores)": "1m",
+    "MEMORY(bytes)": "77Mi"
+  },
+  {
+    "NAME": "kube-scheduler-docker-desktop",
+    "CPU(cores)": "18m",
+    "MEMORY(bytes)": "82Mi"
+  },
+  {
+    "NAME": "metrics-server-8467fcc7b7-wlg6s",
+    "CPU(cores)": "9m",
+    "MEMORY(bytes)": "69Mi"
+  },
+  {
+    "NAME": "storage-provisioner",
+    "CPU(cores)": "4m",
+    "MEMORY(bytes)": "21Mi"
+  },
+  {
+    "NAME": "vpnkit-controller",
+    "CPU(cores)": "1m",
+    "MEMORY(bytes)": "41Mi"
+  }
+]

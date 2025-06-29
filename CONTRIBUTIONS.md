@@ -40,3 +40,16 @@
   Pull request grupal: Archivos de configuración inicial #14 
 
     
+## Sprint 2 
+
+- 2025-06-28: Reorganicé el directorio `scripts` en 2 sub-directorios, logs y metrics.
+
+  > Commit: `fix(py): Actualiza log_collector.py y agrupa en carpetas`
+
+  Pull request grupal: Implementación de metric_collector #21 
+  
+- 2025-06-28: Escribí el script `scripts/metric_collector/metric_collector.py` que se encarga de obtener métricas de Pods y Nodos en archivos .csv y .json. Añade también documentación de como instalar `metric_server` para poder usar `kubectl top`.
+
+  > Commit: `feat(py): Añade metric_collector.py con documentación`
+
+  Pull request grupal: Implementación de metric_collector #21

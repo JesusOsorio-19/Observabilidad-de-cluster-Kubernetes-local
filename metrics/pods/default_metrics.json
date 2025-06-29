@@ -1,0 +1,17 @@
+[
+  {
+    "NAME": "timeserver-7c9445b569-4qhkz",
+    "CPU(cores)": "1m",
+    "MEMORY(bytes)": "22Mi"
+  },
+  {
+    "NAME": "timeserver-7c9445b569-lzdrl",
+    "CPU(cores)": "1m",
+    "MEMORY(bytes)": "21Mi"
+  },
+  {
+    "NAME": "timeserver-7c9445b569-nrnxw",
+    "CPU(cores)": "1m",
+    "MEMORY(bytes)": "22Mi"
+  }
+]

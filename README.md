@@ -26,3 +26,7 @@ Hasta el momento en el Sprint 1 me he encargado de implementar los hooks `pre-co
     chmod +x chmod +x install_hooks.sh
     ./install_hooks.sh
     ```
+
+## Sprint 2
+
+Implementé un recolector de métricas `metric_collector.py` usando `kubectl top`. Este se encarga de obtener métricas básicas de los Pods (uso de CPU, memoria) y Nodos (recursos disponibles), los cuales se visualizarán en archivos .csv y .json dentro del directorio `metrics`. También un documento `.md` donde explico pasa a paso la instalación de `metrics_Server` para usar `kubectl top`.

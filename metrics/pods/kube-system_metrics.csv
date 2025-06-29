@@ -1,0 +1,11 @@
+NAME                                     CPU(cores)   MEMORY(bytes)   
+coredns-668d6bf9bc-mksdh                 4m           37Mi            
+coredns-668d6bf9bc-nb5vs                 4m           45Mi            
+etcd-docker-desktop                      47m          210Mi           
+kube-apiserver-docker-desktop            72m          282Mi           
+kube-controller-manager-docker-desktop   36m          134Mi           
+kube-proxy-72t48                         1m           77Mi            
+kube-scheduler-docker-desktop            18m          82Mi            
+metrics-server-8467fcc7b7-wlg6s          9m           69Mi            
+storage-provisioner                      4m           21Mi            
+vpnkit-controller                        1m           41Mi            
