@@ -1,0 +1,26 @@
+{
+  "chaos_test_summary": {
+    "namespace": "default",
+    "target_selector": "pod=timeserver-pod",
+    "total_alerts": 4,
+    "test_completed": true
+  },
+  "alerts_generated": [
+    {
+      "message": "CHAOS INICIADO: Pod timeserver-7c9445b569-kz6zs seleccionado para eliminación",
+      "type": "chaos_testing_alert"
+    },
+    {
+      "message": "POD ELIMINADO: timeserver-7c9445b569-kz6zs ha sido eliminado exitosamente",
+      "type": "chaos_testing_alert"
+    },
+    {
+      "message": "PROBLEMA DETECTADO: Pod timeserver-7c9445b569-kz6zs ya no existe en el cluster",
+      "type": "chaos_testing_alert"
+    },
+    {
+      "message": "RECUPERACIÓN DETECTADA: Sistema con 3 pods Running",
+      "type": "chaos_testing_alert"
+    }
+  ]
+}

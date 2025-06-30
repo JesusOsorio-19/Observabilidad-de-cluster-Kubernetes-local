@@ -53,3 +53,11 @@
   > Commit: `feat(py): Añade metric_collector.py con documentación`
 
   Pull request grupal: Implementación de metric_collector #21
+
+## Sprint 3
+
+- 2025-06-29: Escribí el script `scripts/metric_collector/metric_collector.py` que simula la eliminación de un pod, observa y detecta el problema y por último genera una alerta. Para esto debemos tener Kubernetes funcionando y también al menos 2 pods `timeserver` en status Running.
+
+> Commit: `feat(chaos): Añade script chaos-test que simula la eliminación de un pod, detecta el problema y genera una alerta`
+
+Pull request grupal: Chaos_testing implementado #25

@@ -30,3 +30,17 @@ Hasta el momento en el Sprint 1 me he encargado de implementar los hooks `pre-co
 ## Sprint 2
 
 Implementé un recolector de métricas `metric_collector.py` usando `kubectl top`. Este se encarga de obtener métricas básicas de los Pods (uso de CPU, memoria) y Nodos (recursos disponibles), los cuales se visualizarán en archivos .csv y .json dentro del directorio `metrics`. También un documento `.md` donde explico pasa a paso la instalación de `metrics_Server` para usar `kubectl top`.
+
+## Sprint 3
+
+Implementé `chaos_testing.py` que simula la eliminación de un pod, observa y detecta el problema y por último genera una alerta. 
+
+### Uso del script
+
+- Ejecutamos el script. Para esto debemos tener Kubernetes funcionando y también al menos 2 pods `timeserver` en status Running.
+
+    ```py
+    python scripts/chaos_test/chaos_testing.py
+    ```
+
+- Esto nos generará  `scripts/chaos_test/reports/chaos_testing_report.json`
